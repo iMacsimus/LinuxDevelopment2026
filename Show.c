@@ -57,20 +57,25 @@ int main(int argc, char *argv[]) {
     keypad(win, TRUE);
     scrollok(win, TRUE);
 
-    for (int i = 0; i < LINES-2; ++i) {
+    wprintw(win, "\n");
+    int i = 0;
+    for (; i < LINES-2-1; ++i) {
       if (!read_line(linebuf, linebuf_size, fin)) {
         break;
       }
-      wprintw(win, "\n%s", linebuf);
+      wprintw(win, "%s\n", linebuf);
+    }
+    for (; i < LINES-2-1; ++i) {
+      wprintw(win, "~\n");
     }
 
     int c = 0;
     while ((c = wgetch(win)) != 27) {
       if (c == ' ') {
         if (!read_line(linebuf, linebuf_size, fin)) {
-          wprintw(win, "\n~");
+          wprintw(win, "~\n");
         } else {
-          wprintw(win, "\n%s", linebuf);
+          wprintw(win, "%s\n", linebuf);
         }
       }
     }
