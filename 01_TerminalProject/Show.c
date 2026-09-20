@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
   init_curses();
   {
-    size_t linebuf_size = COLS;
+    size_t linebuf_size = COLS-2;
     char *linebuf = malloc(linebuf_size);
     WINDOW *frame = newwin(LINES, COLS, 0, 0);
     WINDOW *win = newwin(LINES - 2, COLS - 2, 1, 1);
