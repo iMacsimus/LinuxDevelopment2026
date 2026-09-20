@@ -49,10 +49,20 @@ int main(int argc, char *argv[]) {
     WINDOW *win = newwin(LINES - 2, COLS - 2, 1, 1);
 
     box(frame, 0, 0);
-    const size_t PATH_OUTPUT_OFFSET = 4;
-    mvwaddstr(frame, 0, PATH_OUTPUT_OFFSET, "[");
-    mvwaddstr(frame, 0, PATH_OUTPUT_OFFSET+1, path);
-    mvwaddstr(frame, 0, PATH_OUTPUT_OFFSET+1+strlen(path), "]");
+    const size_t PATH_OUTPUT_PAD_LEFT = 4;
+    const size_t PATH_OUTPUT_PAD_RIGHT = 4;
+    size_t pathlen = strlen(path);
+    if (pathlen + PATH_OUTPUT_PAD_LEFT + PATH_OUTPUT_PAD_RIGHT + 2 <= COLS) {
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT, "[");
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT+1, path);
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT+1+pathlen, "]");
+    } else {
+      size_t truncated_len = COLS-PATH_OUTPUT_PAD_LEFT-PATH_OUTPUT_PAD_RIGHT-2-3;
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT, "[...");
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT+4, path + pathlen - truncated_len);
+      mvwaddstr(frame, 0, PATH_OUTPUT_PAD_LEFT+4+truncated_len, "]");
+    }
+    
     wrefresh(frame);
     keypad(win, TRUE);
     scrollok(win, TRUE);
