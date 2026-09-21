@@ -23,9 +23,10 @@ char *read_line(char *buf, size_t bufsize, FILE *fin) {
     return NULL;
   }
   size_t cur_len = strlen(buf);
-  if (buf[cur_len - 1] == '\n') {
+  if (cur_len>0 && buf[cur_len - 1] == '\n') {
     buf[cur_len - 1] = '\0';
   }
+  return buf;
 }
 
 int main(int argc, char *argv[]) {
