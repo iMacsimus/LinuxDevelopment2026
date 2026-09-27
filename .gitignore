@@ -1,1 +1,6 @@
 Show
+prog*
+*.a
+*.o
+*.so
+README
