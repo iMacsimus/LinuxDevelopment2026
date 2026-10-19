@@ -44,6 +44,7 @@ int64_t try_parse_uint(const char *src) {
         fprintf(stderr, "error: got %ld, but expected non-negative value.\n", res);
         exit(-1);
     }
+    return res;
 }
 
 void check_order(int64_t start, int64_t stop) {
@@ -70,6 +71,13 @@ void check_step(int64_t start, int64_t stop, int64_t step) {
 
 int sgn(int64_t x) { return ((x) > 0) - ((x) < 0); }
 
+void print_range(int64_t start, int64_t stop, int64_t step) {
+    int64_t n = start;
+    for (;n * sgn(step) < stop * sgn(step); n += step) {
+        printf("%ld\n", n);
+    }
+}
+
 int main(int argc, const char **argv) {
     if (argc == 1) {
         print_help();
@@ -91,9 +99,7 @@ int main(int argc, const char **argv) {
         check_step(start, stop, step);
     }
 
-    for (int64_t n = start; n * sgn(step) < stop * sgn(step); n += step) {
-        printf("%ld\n", n);
-    }
+    print_range(start, stop, step);
 
     return 0;
 }
