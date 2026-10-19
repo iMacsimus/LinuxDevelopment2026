@@ -4,3 +4,4 @@ prog*
 *.o
 *.so
 README
+range
