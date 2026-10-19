@@ -7,7 +7,7 @@ watch n
 commands
     silent
     if n%5 == 0
-        printf "@@@ n=%02ld start=%02ld stop=%02ld step=%02ld\n", n, start, stop, step
+        printf "@@@ start=%02ld stop=%02ld step=%02ld elem=%02ld\n", start, stop, step, n
     end
     continue
 end

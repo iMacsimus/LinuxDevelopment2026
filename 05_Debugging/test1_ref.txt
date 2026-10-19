@@ -1,2 +1,2 @@
-n=05 start=01 stop=12 step=01
-n=10 start=01 stop=12 step=01
+start=01 stop=12 step=01 elem=05
+start=01 stop=12 step=01 elem=10
