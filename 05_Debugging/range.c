@@ -2,7 +2,6 @@
 #include <inttypes.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <math.h>
 
 void print_help(void) {
     printf("Usage: ./range arg1 (arg2) (arg3)\n");
