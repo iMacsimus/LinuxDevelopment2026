@@ -12,6 +12,8 @@ void print_help(void) {
 
 int parse_int(const char *src, int64_t *dst) {
     while(*src == ' ') ++src;
+    if (*src == '\0') return -1;
+    
     char *end = NULL;
     int64_t res = strtoll(src, &end, 10);
     if (errno != 0) {
@@ -48,7 +50,7 @@ int64_t try_parse_uint(const char *src) {
 
 void check_order(int64_t start, int64_t stop) {
     if (stop < start) {
-        fprintf(stderr, "error: got %ld > %ld, but the 1-st argument expected to be less or equal the 2-nd argument\n", start, stop);
+        fprintf(stderr, "error: start (%ld) expected to be less or equal than stop (%ld).\n", start, stop);
         exit(-1);
     }
 }
